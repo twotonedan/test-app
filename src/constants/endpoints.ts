@@ -1,0 +1,48 @@
+const mockApi = 'https://71c62289-33ce-45dd-bbd5-114772dfbebc.mock.pstmn.io/';
+const endpoints = {
+  initialState: `${mockApi}initial-state`,
+  feedData: `${mockApi}feed-data`,
+  unit: `${mockApi}unit?id=`,
+  unitList: `${mockApi}unit-list`,
+  unitSingleDates: `${mockApi}unit-single-dates`,
+  unitMultiDates: `${mockApi}unit-multi-dates`,
+  accessories: `${mockApi}accessories`,
+  policies: `${mockApi}policies`,
+  terms: `${mockApi}terms`,
+  bookingInformation: `${mockApi}booking-information`,
+  bookingTimeRangeByDuration: `${mockApi}booking-time-range-by-duration`,
+  joinWaitlist: `${mockApi}join-waitlist`,
+  customerInfoInputs: `${mockApi}customer-info-inputs`,
+  users: `${mockApi}users`,
+  items: `${mockApi}items`,
+  bookings: `${mockApi}bookings`,
+  createAccount: `${mockApi}create-account`,
+  getAddOns: `${mockApi}add-ons`,
+  bookingSettings: `${mockApi}booking-settings`,
+  user: `${mockApi}user`,
+  routes: `${mockApi}routes`,
+  checkoutSteps: `${mockApi}checkout-steps`,
+  footerItems: `${mockApi}footer-items`,
+  itemSingleDayAvailability: `${mockApi}item-single-day-availability`,
+  itemMultiDayAvailability: `${mockApi}item-multi-day-availability`,
+  // dock queue
+  dockQueueBookings: `${mockApi}dock-queue-bookings`,
+  waterQueueBookings: `${mockApi}water-queue-bookings`,
+  updateBooking: `${mockApi}update-booking`,
+  waterQueueViews: `${mockApi}water-queue-views`,
+  dockQueueViews: `${mockApi}dock-queue-views`,
+  createTableView: `${mockApi}create-table-view`,
+  createCardView: `${mockApi}create-card-view`,
+  updateTableView: `${mockApi}update-table-view`,
+  updateCardView: `${mockApi}update-card-view`,
+  deleteTableView: `${mockApi}delete-table-view`,
+  deleteCardView: `${mockApi}delete-card-view`,
+
+  // error handling
+  test: `${mockApi}test`,
+  error404: `${mockApi}error-404`,
+  error500: `${mockApi}error-500`,
+  errorMessage: `${mockApi}error-message`,
+};
+
+export default endpoints;

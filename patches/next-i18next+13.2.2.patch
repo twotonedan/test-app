@@ -1,0 +1,15 @@
+diff --git a/node_modules/next-i18next/dist/types/types.d.ts b/node_modules/next-i18next/dist/types/types.d.ts
+index 60a8536..2c38169 100644
+--- a/node_modules/next-i18next/dist/types/types.d.ts
++++ b/node_modules/next-i18next/dist/types/types.d.ts
+@@ -1,6 +1,9 @@
+-import { I18nContext, useTranslation, Trans, withTranslation, WithTranslation as ReactI18nextWithTranslation, Translation } from 'react-i18next';
++import { I18nContext, useTranslation as defaultUseTranslationType, Trans, withTranslation, WithTranslation as ReactI18nextWithTranslation, Translation } from 'react-i18next';
+ import { InitOptions, i18n as I18NextClient, TFunction as I18NextTFunction, TypeOptions } from 'i18next';
+ import { appWithTranslation, i18n } from './';
++
++type UseTranslation = typeof defaultUseTranslationType;
++
+ /**
+  * Inlined from `import('next').NextConfig.i18n` v13.0.6. As we support
+  * multiple nextjs versions it's safer to inline and keep it up-to-date.

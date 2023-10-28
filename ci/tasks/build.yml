@@ -1,0 +1,14 @@
+---
+platform: linux
+image_resource:
+  type: docker-image
+  source:
+    repository: 968479837428.dkr.ecr.us-east-1.amazonaws.com/stellar-ims-dev-concourse-build-node-16
+    tag: latest
+inputs:
+  - name: ims-frontend
+outputs:
+  - name: dist
+run:
+  path: /bin/sh
+  args: ["ims-frontend/ci/scripts/build.sh", "ims-frontend"]

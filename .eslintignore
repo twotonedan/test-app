@@ -1,0 +1,13 @@
+/dist
+*.scss
+*.css
+/.git
+/.vscode
+/node_modules
+/build
+vite.config.ts
+/src/stories/**.stories.tsx
+/src/stories/**.stories.ts
+/src/constants/locales/supportedLocales.js
+babel.config.js
+*.test.tsx

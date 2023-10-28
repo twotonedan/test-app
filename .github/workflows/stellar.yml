@@ -1,0 +1,65 @@
+name: stellar
+on: pull_request
+jobs:
+  is-version-bump:
+    runs-on: ubuntu-latest
+    outputs:
+      version-bump: ${{ steps.version-bump-step.outputs.version-bump }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      
+      - name: Is last commit a version bump
+        id: version-bump-step
+        run: |
+          echo ${{ github.event.pull_request.head.sha }}
+          echo $(git rev-list --format=%B --max-count=1 ${{ github.event.pull_request.head.sha }})
+
+          if [[ $(git rev-list --format=%B --max-count=1 ${{ github.event.pull_request.head.sha }}) =~ [0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "last commit is version bump"
+              echo ::set-output name=version-bump::true
+          else
+              echo "last commit is not version bump"
+              echo ::set-output name=version-bump::false
+          fi
+  stellar:
+    name: runner / stellar
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: is-version-bump
+    if: needs.is-version-bump.outputs.version-bump == 'false'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14.21.1'
+
+      - name: Prepare caching node modules and git fix
+        run: |
+          grep -v 'version' package.json > node-modules-cache-key.txt
+          git config --global --add safe.directory /__w/core/core
+        
+      - name: Cache node modules
+        uses: actions/cache@v3
+        id: cache
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/node-modules-cache-key.txt') }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
+          echo "@stellarimssoftware:registry=https://npm.pkg.github.com/stellarimssoftware" >> .npmrc
+          npm ci
+      
+      - name: Run Tests
+        run: ./node_modules/.bin/jest --config ./jest.config.json --detectOpenHandles --forceExit --coverage --verbose --changedSince=${{github.event.pull_request.base.sha}}
