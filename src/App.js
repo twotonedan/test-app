@@ -5,11 +5,11 @@ const App = () => {
 	return (
 		<div className="App">
 			<a
-				href="https://reactjs.org"
+				href="https://docs.github.com/en/copilot/quickstart"
 				target="_blank"
 				rel="noopener noreferrer"
 			>
-          Github Copilot
+				Github Copilot
 			</a>
 		</div>
 	)

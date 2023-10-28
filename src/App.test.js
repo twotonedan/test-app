@@ -5,7 +5,7 @@ import App from "./App"
 describe("test", () => {
 	test("renders learn react link", () => {
 		render(<App />)
-		const linkElement = screen.getByText('Github Copilot')
+		const linkElement = screen.getByText("Github Copilot")
 		expect(linkElement).toBeInTheDocument()
 	})
 })
