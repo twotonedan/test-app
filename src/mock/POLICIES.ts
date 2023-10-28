@@ -1,3 +1,0 @@
-import { PoliciesReplaceOptionEnum } from '@/types/enums';
-
-export const POLICIES_DESCRIPTION = `For those born after 1988, a Boater's Safety Course and a valid driver's license are also required. You can bring food and drinks abroad. Dogs are welcomed but have to be 40lb and under.\n ${PoliciesReplaceOptionEnum.INITIALS} Dogs are welcomed but have to be 40lb and under. You may bring inflatable lounge tubes and rafts. Click here to rent. You must have a working cell phone with you at all times.\n\n Be 40lb and under. You may bring inflatable lounge tubes and rafts. Click here to rent. You must have a working cell phone with you at all times.`;
